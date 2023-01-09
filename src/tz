@@ -1,0 +1,28 @@
+auth:
+  login
+  register
+  token       tomorrow
+main:
+  home:
+    posts:  14
+      comments
+      likes
+      images
+      saves
+      tags
+    stories: 12
+  search:    13
+  explore:   15
+  notifications:  17
+    follow
+    requests
+  create:    16
+  profile:    11
+    edit
+    archives
+    comments
+    likes
+    saves
+    subscribers
+    subscriptions
+  log out:   11

@@ -1,0 +1,33 @@
+.footer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  background-color: rgb(250, 250, 250);
+  padding: 0 1%;
+  padding-bottom: 4rem;
+  @media (max-width: 870px) {
+    padding-top: 3rem;
+  }
+  div{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  span{
+    color: #8E8E8E;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+  }
+  select{
+    background: none;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    option{
+      color: #8E8E8E;
+    }
+  }
+}
