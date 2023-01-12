@@ -118,6 +118,12 @@
             font-size: 14px;
             margin-bottom: 1rem;
             &:disabled{
+              background-color: rgba(0, 149, 246, .6);
+              cursor: default;
+              transition: .2s;
+              &:hover{
+                background-color: rgba(0, 149, 246, .6);
+              }
             }
             &:hover{
               background-color: rgb(24, 119, 242);

@@ -1,5 +1,6 @@
 .sidebar_container{
   display: flex;
+  position: fixed;
   .main{
     background-color: rgb(250, 250, 250);
     .sidebar.new{
@@ -21,8 +22,9 @@
         align-items: center;
       }
       @media (max-width: 760px) {
-        width: 94%;
-        height: 50px;
+        width: 50%;
+        padding: 0;
+        height: 0px;
       }
       @media (max-width: 600px) {
         width: 90%;
@@ -52,6 +54,23 @@
           bottom: 0;
           border-top: 1px solid rgb(219, 219, 219);
           width: 100%;
+          margin-left: 60%;
+          background-color: #fff;
+        }
+        @media (max-width: 666px) {
+          margin-left: 53%;
+        }
+        @media (max-width: 600px) {
+          margin-left: 17%;
+        }
+        @media (max-width: 450px) {
+          margin-left: 10%;
+        }
+        @media (max-width: 385px) {
+          margin-left: 2%;
+        }
+        @media (max-width: 330px) {
+          margin-left: 19%;
         }
         .div{
           display: flex;
@@ -114,6 +133,19 @@
       border-bottom: 1px solid rgb(219, 219, 219);
       background-color: #fff;
       padding: 0 1rem;
+      padding-right: 14rem;
+      @media (max-width: 760px) {
+        width: 100%;
+      }
+      @media (max-width: 636px) {
+        padding-right: 10rem;
+      }
+      @media (max-width: 572px) {
+        padding-right: 7rem;
+      }
+      @media (max-width: 518px) {
+        padding-right: 4rem;
+      }
       .searchBlock{
         display: flex;
         align-items: center;

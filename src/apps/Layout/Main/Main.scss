@@ -1,0 +1,257 @@
+.main_block{
+  display: flex;
+  justify-content: center;
+  background-color: rgb(250, 250, 250);
+  gap: 2rem;
+  margin-left: 33%;
+  flex-wrap: wrap;
+  @media (max-width: 1244px) {
+    margin-left: 23%;
+  }
+  @media (max-width: 1000px) {
+    margin-left: 15%;
+  }
+  @media (max-width: 924px) {
+    margin-left: 27%;
+  }
+  @media (max-width: 776px) {
+    margin-left: 23%;
+  }
+  @media (max-width: 760px) {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .stories_posts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 1.5rem;
+    .stories{
+      display: flex;
+      gap: 10px;
+      overflow-x: scroll;
+      max-width: 433px;
+      background-color: #fff;
+      padding: 1rem;
+      border: 2.5px solid rgb(219, 219, 219);
+      border-radius: 8px;
+      @media (max-width: 478px) {
+        max-width: 410px;
+        margin-left: 10px;
+      }
+      @media (max-width: 450px) {
+        margin-left: 25px;
+      }
+      @media (max-width: 390px) {
+        width: 390px;
+        margin-left: 48px;
+      }
+      @media (max-width: 330px) {
+        width: 360px;
+        margin-left: 76px;
+      }
+      .stories_card{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        img{
+          width: 55px;
+          height: 50px;
+          border-radius: 50%;
+          border: 1px solid gray;
+          padding: 5px;
+          object-fit: cover;
+        }
+        span{
+          color: #8E8E8E;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 16px;
+          text-align: center;
+        }
+      }
+    }
+    .stories::-webkit-scrollbar{
+      background-color: rgb(176, 176, 176);
+      height: 8px;
+      border-radius: 15px;
+    }
+    .posts{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .post_card{
+        background-color: #fff;
+        width: 470px;
+        border: 2.5px solid rgb(219, 219, 219);
+        border-radius: 8px;
+        @media (max-width: 478px) {
+          width: 440px;
+          margin-left: 10px;
+        }
+        @media (max-width: 450px) {
+          margin-left: 23px;
+        }
+        @media (max-width: 390px) {
+          width: 420px;
+          margin-left: 48px;
+        }
+        @media (max-width: 330px) {
+          width: 380px;
+          margin-left: 76px;
+        }
+        .post_card-header{
+          display: flex;
+          gap: 13px;
+          padding: 10px 15px;
+          align-items: center;
+          img{
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          h3{
+            margin: 3px;
+            font-size: 14px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          }
+        }
+        .post_card-body{
+          img{
+            width: 470px;
+            height: 470px;
+            object-fit: cover;
+            @media (max-width: 478px) {
+              width: 440px;
+            }
+            @media (max-width: 390px) {
+              width: 420px;
+            }
+            @media (max-width: 330px) {
+              width: 380px;
+            }
+          }
+        }
+        .post_card-footer{
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .likes_block{
+            display: flex;
+            justify-content: space-between;
+            .likes{
+              display: flex;
+              gap: 15px;
+              svg{
+                color: rgb(38, 38, 38);
+                font-size: 27px;
+                cursor: pointer;
+                transition: .1s;
+                &:hover{
+                  color: gray;
+                }
+              }
+            }
+          }
+          .about_block{
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            .count_of_likes{
+              span{
+                color: rgb(38, 38, 38);
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 18px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+              }
+            }
+            div{
+              p{
+                margin: 0;
+                color: rgb(38, 38, 38);
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 18px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+                span{
+                  cursor: pointer;
+                }
+                .more{
+                  color: #8E8E8E;
+                }
+              }
+            }
+          }
+          .comment_block{
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgb(197, 195, 195);
+            padding-top: 10px;
+            input{
+              border: 0;
+              outline: 0;
+              background: none;
+              color: rgb(38, 38, 38);
+            }
+            button{
+              background: none;
+              border: 0;
+              outline: 0;
+              color: #0095F6;
+              cursor: pointer;
+              &:disabled{
+                cursor: default;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .prof{
+    display: flex;
+    gap: 20px;
+    background-color: rgb(250, 250, 250);
+    margin-top: 3rem;
+    @media (max-width: 924px) {
+      display: none;
+    }
+    img{
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+    .mt{
+      margin-top: 10px;
+      .login_block{
+        cursor: pointer;
+        h3{
+          color: rgb(38,38,38);
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 18px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+          margin: 0;
+        }
+      }
+      .name_block{
+        span{
+          color: rgb(142, 142, 142);
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 18px;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+      }
+    }
+  }
+}

@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { AiFillFacebook } from 'react-icons/ai'
 import Footer from '../../../components/Footer';
 import './Register.scss'
+import { getRegister, getUsers } from '../../../config/api';
 
 const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { isValid, errors },
+    formState: { isValid },
   } = useForm({
     mode: 'onBlur',
   });
@@ -17,7 +18,9 @@ const Register = () => {
   const navigate = useNavigate()
 
   const onSubmit = (data) => {
-    
+    getRegister(data)
+    .then(r => console.log(r.data))
+    .finally(() => navigate('/'))
   }
 
   return (
@@ -41,9 +44,9 @@ const Register = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               <input
-                type="username"
+                type="text"
                 placeholder="Mobile Number or Email"
-                {...register('number', {
+                {...register('email', {
                   required: 'Required field!',
                 })}
               />
@@ -52,7 +55,7 @@ const Register = () => {
               <input
                 type="text"
                 placeholder="Full name"
-                {...register('fullName', {
+                {...register('first_name', {
                   required: 'Required field!',
                 })}
               />
@@ -70,7 +73,16 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="Password"
-                {...register('fullName', {
+                {...register('password', {
+                  required: 'Required field!',
+                })}
+              />
+            </div>
+            <div>
+              <input
+                type="password"
+                placeholder="Password Repeat"
+                {...register('password_repeat', {
                   required: 'Required field!',
                 })}
               />

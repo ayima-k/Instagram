@@ -1,7 +1,7 @@
 auth:
   login
   register
-  token       tomorrow
+  token       12
 main:
   home:
     posts:  14
