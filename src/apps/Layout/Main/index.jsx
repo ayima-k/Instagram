@@ -1,28 +1,29 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Posts from '../../../components/Posts'
+import PostsMain from '../../../components/PostsMain'
 import Stories from '../../../components/Stories'
 import './Main.scss'
 
 const Main = () => {
+  const user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate()
 
   return (
     <div className='main_block'>
       <div className='stories_posts'>
         <Stories/>
-        <Posts/>
+        <PostsMain/>
       </div>
       <div className='prof'>
         <div>
-          <img onClick={() => navigate('/profile')} src="https://images.unsplash.com/photo-1566275529824-cca6d008f3da?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGhvdG98ZW58MHx8MHx8&w=1000&q=80" alt="" />
+          <img onClick={() => navigate('/profile')} src={user?.avatarka ? '' : 'https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg'} alt="" />
         </div>
         <div className='mt'>
           <div className="login_block" onClick={() => navigate('/profile')}>
-            <h3>ayima__k</h3>
+            <h3>{user?.username}</h3>
           </div>
           <div className="name_block">
-            <span>| Ayima Kochkorova |</span>
+            <span>{user?.first_name} {user?.last_name}</span>
           </div>
         </div>
       </div>

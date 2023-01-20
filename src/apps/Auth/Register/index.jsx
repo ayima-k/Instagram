@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { AiFillFacebook } from 'react-icons/ai'
 import Footer from '../../../components/Footer';
 import './Register.scss'
-import { getRegister, getUsers } from '../../../config/api';
+import { getRegister, getToken, getUsers } from '../../../config/api';
 
 const Register = () => {
   const {
@@ -16,11 +16,23 @@ const Register = () => {
   });
 
   const navigate = useNavigate()
+  const [passValue, setPassValue] = React.useState('')
+  const [repValue, setRepValue] = React.useState('')
 
   const onSubmit = (data) => {
-    getRegister(data)
-    .then(r => console.log(r.data))
-    .finally(() => navigate('/'))
+    getRegister({...data, avatar: null})
+    .then(r => {
+      localStorage.setItem('user', JSON.stringify(r.data))
+      getToken({username: data.username, password: data.password})
+      .then(r => {
+        if (r) {
+          localStorage.setItem('accessToken', r.data.access)
+          localStorage.setItem('refreshToken', r.data.refresh)
+          navigate('/')
+        }
+      })
+    })
+    .catch((e) => window.alert(e))
   }
 
   return (
@@ -45,7 +57,7 @@ const Register = () => {
             <div>
               <input
                 type="text"
-                placeholder="Mobile Number or Email"
+                placeholder="Email"
                 {...register('email', {
                   required: 'Required field!',
                 })}
@@ -54,8 +66,17 @@ const Register = () => {
             <div>
               <input
                 type="text"
-                placeholder="Full name"
+                placeholder="First name"
                 {...register('first_name', {
+                  required: 'Required field!',
+                })}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Last name"
+                {...register('last_name', {
                   required: 'Required field!',
                 })}
               />
@@ -71,8 +92,28 @@ const Register = () => {
             </div>
             <div>
               <input
+                type="text"
+                placeholder="Phone Number"
+                {...register('phone_number', {
+                  required: 'Required field!',
+                })}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="About"
+                {...register('bio', {
+                  required: 'Required field!',
+                })}
+              />
+            </div>
+            <div>
+              <input
                 type="password"
                 placeholder="Password"
+                value={passValue}
+                onInput={(e) => setPassValue(e.target.value)}
                 {...register('password', {
                   required: 'Required field!',
                 })}
@@ -82,6 +123,8 @@ const Register = () => {
               <input
                 type="password"
                 placeholder="Password Repeat"
+                value={repValue}
+                onInput={(e) => setRepValue(e.target.value)}
                 {...register('password_repeat', {
                   required: 'Required field!',
                 })}
@@ -99,7 +142,7 @@ const Register = () => {
               </p>
             </div>
             <div className="btn">
-              <button disabled={!isValid} type="submit" className="btn_primary">
+              <button disabled={!isValid || passValue !== repValue || passValue.length <= 8} type="submit" className="btn_primary">
                 Sign up
               </button>
             </div>

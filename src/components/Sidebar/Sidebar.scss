@@ -64,13 +64,16 @@
           margin-left: 17%;
         }
         @media (max-width: 450px) {
-          margin-left: 10%;
+          margin-left: 5%;
         }
-        @media (max-width: 385px) {
-          margin-left: 2%;
+        @media (max-width: 400px) {
+          margin-left: -30px;
         }
         @media (max-width: 330px) {
           margin-left: 19%;
+        }
+        @media (max-width: 320px) {
+          margin-left: 0;
         }
         .div{
           display: flex;
@@ -146,6 +149,9 @@
       @media (max-width: 518px) {
         padding-right: 4rem;
       }
+      // @media (max-width: 330px) {
+      //   padding-right: 4rem;
+      // }
       .searchBlock{
         display: flex;
         align-items: center;

@@ -1,0 +1,90 @@
+.create{
+  margin-left: 40%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  @media (max-width: 1024px){
+    margin-left: 30%;
+  }
+  @media (max-width: 768px) {
+    margin-left: 17%;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+  }
+  @media (max-width: 450px) {
+    margin-left: 13px;
+  }
+  @media (max-width: 375px) {
+    margin-left: 13px;
+  }
+  @media (max-width: 320px) {
+    margin-left: 5px;
+  }
+  .d_flex_for_posts{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .create_post, .create_story{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+  }
+  img{
+    width: 500px;
+    height: 300px;
+    margin-top: -4rem;
+    object-fit: cover;
+    @media (max-width: 450px) {
+      width: 400px;
+      height: 250px;
+    }
+    @media (max-width: 375px) {
+      width: 350px;
+      height: 200px;
+    }
+    @media (max-width: 320px) {
+      width: 300px;
+      height: 200px;
+    }
+  }
+  label, button{
+    background-color: #0095F6;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 4px;
+    padding: 8px;
+    width: 220px;
+    &:hover{
+      background-color: rgb(24, 119, 242);
+    }
+  }
+  button{
+    width: 240px;
+    &:disabled{
+      background-color: rgba(0, 149, 246, .6);
+      cursor: default;
+      transition: .2s;
+      &:hover{
+        background-color: rgba(0, 149, 246, .6);
+      }
+    }
+  }
+  input{
+    opacity: 1;
+    width: 230px;
+  }
+  textarea{
+    width: 230px;
+    max-width: 230px;
+    max-height: 100px;
+    outline: 0;
+  }
+}

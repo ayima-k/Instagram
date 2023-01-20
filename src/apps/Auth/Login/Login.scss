@@ -6,7 +6,9 @@
   padding: 3% 0;
   .image_container{
     img{
-
+      width: 450px;
+      height: 610px;
+      margin-right: 2rem;
     }
   }
   .login_container{
@@ -61,6 +63,12 @@
             border-radius: 10px;
             font-size: 14px;
             &:disabled{
+              background-color: rgba(0, 149, 246, .6);
+              cursor: default;
+              transition: .2s;
+              &:hover{
+                background-color: rgba(0, 149, 246, .6);
+              }
             }
             &:hover{
               background-color: rgb(24, 119, 242);

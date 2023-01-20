@@ -1,0 +1,30 @@
+.posts_container{
+  margin-left: 19%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  padding: 2% 6.5%;
+  @media (max-width: 1024px) {
+    margin-left: 7%;
+  }
+  @media (max-width: 768px) {
+    margin-left: 0%;
+  }
+  @media (max-width: 450px) {
+    grid-template-rows: repeat(1, 1ft);
+  }
+  .post_images{
+    display: flex;
+    img{
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      @media (max-width: 768px) {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+}

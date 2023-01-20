@@ -1,11 +1,12 @@
-import React from 'react'
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { BsCheck } from 'react-icons/bs'
 import { AiFillFacebook } from 'react-icons/ai'
 import { useNavigate } from 'react-router-dom';
-import './Login.scss'
-import Footer from '../../../components/Footer';
 import { useMediaQuery } from 'react-responsive';
+import { getToken, getUser } from '../../../config/api';
+import Footer from '../../../components/Footer';
+import Image from '../../../assets/insta.PNG'
+import './Login.scss';
 
 const Login = () => {
   const {
@@ -21,9 +22,22 @@ const Login = () => {
   })
 
   const navigate = useNavigate()
+  const [passValue, setPassValue] = React.useState('')
 
   const onSubmit = (data) => {
-    
+    getUser()
+    .then(r => {
+      localStorage.setItem('user', JSON.stringify(r.data.find(obj => obj.username === data.username)))
+      getToken({username: data.username, password: data.password})
+      .then(r => {
+        if (r) {
+          localStorage.setItem('accessToken', r.data.access)
+          localStorage.setItem('refreshToken', r.data.refresh)
+          navigate('/')
+        }
+      })
+    })
+    .catch(e => window.alert(e))
   }
 
   return (
@@ -31,8 +45,8 @@ const Login = () => {
       <div className='login'>
         {
           isTablet && <div className='image_container'>
-          <img src="https://static.cdninstagram.com/rsrc.php/v3/y4/r/ItTndlZM2n2.png" alt="" />
-        </div>
+            <img className='main_login_image' src="https://nimage.g-enews.com/phpwas/restmb_allidxmake.php?idx=5&simg=20220906105834056786ed0c62d4912242222121.jpg" alt="" />
+          </div>
         }
         <div className='login_container'>
           <div className="container">
@@ -54,13 +68,15 @@ const Login = () => {
                 <input
                   type="password"
                   placeholder="Password"
+                  value={passValue}
+                  onInput={(e) => setPassValue(e.target.value)}
                   {...register('password', {
                     required: 'Required field!',
                   })}
                 />
               </div>
               <div className="btn">
-                <button disabled={!isValid} type="submit" className="btn_primary">
+                <button disabled={!isValid || passValue.length <= 8} type="submit" className="btn_primary">
                   Log in
                 </button>
               </div>

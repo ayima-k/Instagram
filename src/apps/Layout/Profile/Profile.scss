@@ -33,6 +33,7 @@
       flex-direction: column;
       gap: 10px;
       .profile_first{
+        padding: 0 15px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -64,16 +65,35 @@
           width: 200px;
         }
       }
+      .follow{
+        background-color: #0095F6;
+        color: #fff;
+        &:hover{
+          background-color: rgb(24, 119, 242);
+        }
+      }
+      .follow.ed{
+        background-color: #EFEFEF;
+        color: black;
+        &:hover{
+          background-color: rgb(219, 219, 219);
+        }
+      }
+    }
+    svg{
+      font-size: 26px;
     }
   }
   .profile_second{
     display: flex;
     justify-content: space-between;
     padding: 0 1rem;
+    gap: 10px;
     span{
       display: flex;
       align-items: center;
       gap: 7px;
+      cursor: pointer;
       p{
         font-weight: 600;
         color: #262626;

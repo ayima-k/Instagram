@@ -1,17 +1,31 @@
 import React from 'react'
 import { BsSearch } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
+import { getSearch } from '../../config/api'
 import './Search.scss'
 
 const Search = () => {
   const [value, setValue] = React.useState('')
+  const [data, setData] = React.useState(null)
   const inputRef = React.useRef(null)
+  const navigate = useNavigate()
+  const [toggle, setToggle] = React.useState(true)
   
   const onClickClear = () => {
     setValue('')
     inputRef.current?.focus()
   }
 
-  return (
+  const handleSearch = (value) => {
+    getSearch(value)
+    .then(r => {
+      setData(r.data)
+
+    })
+    .finally(() => setToggle(true))
+  }
+
+  return toggle && (
     <div className='search_dropdown'>
       <div className='search_block'>
         <div className='search_logo'>
@@ -20,10 +34,13 @@ const Search = () => {
         <div className='search_input'>
           <div>
             <BsSearch/>
-            <input 
+            <input
               type="text" 
               placeholder='Search' 
-              onChange={(e) => setValue(e.target.value)} 
+              onChange={(e) => {
+                setValue(e.target.value)
+                handleSearch(value)
+              }} 
               ref={inputRef}
               value={value}
             />
@@ -33,6 +50,19 @@ const Search = () => {
       </div>
       <div className='hr'>
 
+      </div>
+      <div className="searched">
+        {
+          value.length >= 1 && data?.map(item => (
+            <div key={item.id} className='searched_block' onClick={() => {
+              navigate(`users/${item.id}`)
+              setToggle(false)
+            }}>
+              <img src={item.avatarka ? '' : 'https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg'} alt="" />
+              <h2>{item.username}</h2>
+            </div>
+          ))
+        }
       </div>
     </div>
   )

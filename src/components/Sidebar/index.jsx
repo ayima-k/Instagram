@@ -6,9 +6,9 @@ import { BiLogOut } from 'react-icons/bi'
 import { FaSearch } from 'react-icons/fa'
 import { useMediaQuery } from 'react-responsive'
 import { useNavigate } from 'react-router-dom'
-import './Sidebar.scss'
 import Search from '../Search'
-import Notif from '../Notifications'
+import Notif from '../../apps/Layout/Notifications'
+import './Sidebar.scss'
 
 const Sidebar = () => {
   const [active, setActive] = React.useState('home')
@@ -30,6 +30,11 @@ const Sidebar = () => {
   const isTablet = useMediaQuery({
     query: "(max-width: 1265px)"
   })
+
+  const logOut = () => {
+    localStorage.clear()
+    window.location.reload()
+  }
 
   return (
     <div className='sidebar_container'>
@@ -144,12 +149,12 @@ const Sidebar = () => {
               }} 
               className={active === 'profile' ? 'div active' : 'div'}
             >
-              <img src="https://images.pexels.com/photos/3680219/pexels-photo-3680219.jpeg?cs=srgb&dl=pexels-lukas-rodriguez-3680219.jpg&fm=jpg" alt="photo profile" />
+              <img src={JSON.parse(localStorage.getItem('user'))?.avatarka ? '' : 'https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg'} alt="" />
               {!isTablet && !search && !notif && <span>Profile</span>}
             </div>
           </div>
           {
-            !isMobile && <div className="logOut">
+            !isMobile && <div className="logOut" onClick={logOut}>
               {isTablet || search ? <BiLogOut/> : 'Log out'}
             </div>
           }
@@ -165,4 +170,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default Sidebar;
