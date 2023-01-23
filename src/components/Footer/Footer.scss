@@ -1,4 +1,4 @@
-.footer{
+.footer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,25 +9,25 @@
   @media (max-width: 870px) {
     padding-top: 3rem;
   }
-  div{
+  div {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
   }
-  span{
-    color: #8E8E8E;
+  span {
+    color: #8e8e8e;
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
   }
-  select{
+  select {
     background: none;
     border: 0;
     outline: 0;
     cursor: pointer;
-    option{
-      color: #8E8E8E;
+    option {
+      color: #8e8e8e;
     }
   }
 }

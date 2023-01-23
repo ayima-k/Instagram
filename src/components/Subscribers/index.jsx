@@ -1,32 +1,34 @@
-import React from 'react'
-import { getFollowers, getSingleUser, getUser } from '../../config/api'
-import './Subscribers.scss'
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getFollowers } from '../../config/api';
+import './Subscribers.scss';
 
 const Subscribers = () => {
-  const [data, setData] = React.useState(null)
-  const [base, setBase] = React.useState(null)
+  const [data, setData] = React.useState(null);
+  const { id } = useParams()
+  const navigate = useNavigate();
 
-  getFollowers(JSON.parse(localStorage.getItem('user')).id)
-  .then(r => setData(r.data))
-
-  // getSingleUser(data?.map(item => item.id))
-  // .then(r => console.log(r.data))
-
-  const arr = [1,2]
-
+  React.useEffect(() => {
+    getFollowers(id).then((r) => setData(r.data));
+    // data?.map(obj => getUserById(obj?.to_user).then(r => {
+    //   console.log(r.data);
+    // }))
+  }, [data]);
 
   return (
-    <div className='subscribers'>
-      {
-        base?.map(item => (
-          <div className='sub_blocks'>
-            <img src={item.avatarka} alt="" />
-            <h2>{item.username}</h2>
+    <div className="subscribers">
+      {data?.length >= 1 &&
+        data?.map((obj) => (
+          <div key={obj?.id} onClick={() => navigate(`/users/${obj?.to_user === id ? obj?.from_user : obj?.from_user}`)}>
+            <img
+              src="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"
+              alt=""
+            />
+            <span>user</span>
           </div>
-        ))
-      }
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Subscribers
+export default Subscribers;

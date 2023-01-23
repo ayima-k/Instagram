@@ -1,27 +1,35 @@
-import React from 'react'
-import { getFollowings } from '../../config/api'
-import './Subscciptions.scss'
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getFollowings, getUserById } from '../../config/api';
+import GetUserById from '../getUserById';
+import './Subscciptions.scss';
 
 const Subscriptions = () => {
-  const user = JSON.parse(localStorage.getItem('user'))
-  const [data, setData] = React.useState(null)
+  const [data, setData] = React.useState(null);
+  const { id } = useParams()
+  const navigate = useNavigate();
 
   React.useEffect(() => {
-    getFollowings(user?.id)
-    .then(r => setData(r.data))
-  }, [data])
-
-  console.log(data);
+    getFollowings(id).then((r) => setData(r.data));
+    // data?.map(obj => getUserById(obj?.to_user).then(r => {
+    //   console.log(r.data);
+    // }))
+  }, [data]);
 
   return (
-    <div className='subscriptions'>
-      {
-        data?.length >= 1 && data?.map(obj => (
-          <div key={obj?.id}>{obj?.to_user}</div>
-        ))
-      }
+    <div className="subscriptions">
+      {data?.length >= 1 &&
+        data?.map((obj) => (
+          <div key={obj?.id} onClick={() => navigate(`/users/${obj?.to_user}`)}>
+            <img
+              src="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"
+              alt=""
+            />
+            <span>user</span>
+          </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default Subscriptions
+export default Subscriptions;

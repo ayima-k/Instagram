@@ -1,9 +1,9 @@
-import React from 'react'
-import './Footer.scss'
+import React from 'react';
+import './Footer.scss';
 
 const Footer = () => {
   return (
-    <div className='footer'>
+    <div className="footer">
       <div>
         <span>Meta</span>
         <span>About</span>
@@ -20,21 +20,21 @@ const Footer = () => {
       </div>
       <div>
         <select defaultValue={'e'}>
-          <option >Africaans</option>
-          <option >Cestina</option>
-          <option >Dansk</option>
-          <option >Deutsch</option>
-          <option  value='e'>English</option>
-          <option >English (UK)</option>
-          <option >Espanol</option>
-          <option >Italiano</option>
-          <option >Русский</option>
-          <option >Portuguse</option>
+          <option>Africaans</option>
+          <option>Cestina</option>
+          <option>Dansk</option>
+          <option>Deutsch</option>
+          <option value="e">English</option>
+          <option>English (UK)</option>
+          <option>Espanol</option>
+          <option>Italiano</option>
+          <option>Русский</option>
+          <option>Portuguse</option>
         </select>
         <span>© 2023 Instagram from Meta</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

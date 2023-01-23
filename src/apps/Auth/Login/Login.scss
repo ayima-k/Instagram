@@ -1,21 +1,21 @@
-.login{
+.login {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   background-color: rgb(250, 250, 250);
   padding: 3% 0;
-  .image_container{
-    img{
+  .image_container {
+    img {
       width: 450px;
       height: 610px;
       margin-right: 2rem;
     }
   }
-  .login_container{
+  .login_container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    .container{
+    .container {
       border: 2px solid rgb(219, 219, 219);
       padding: 8% 2%;
       border-radius: 1px;
@@ -29,30 +29,30 @@
         background: none;
         border: 0;
       }
-      .logo{
-        img{
+      .logo {
+        img {
           width: 200px;
           height: 70px;
         }
       }
-      form{
+      form {
         display: flex;
         flex-direction: column;
         gap: 10px;
         margin-top: 30px;
-        input{
+        input {
           background: rgb(250, 250, 250);
           outline: 0;
           border: 1px solid rgb(219, 219, 219);
           padding: 10px;
           width: 260px;
           border-radius: 1px;
-          &::placeholder{
+          &::placeholder {
             color: rgb(142, 142, 142);
           }
         }
-        .btn{
-          button{
+        .btn {
+          button {
             background-color: rgb(0, 149, 246);
             color: #fff;
             outline: 0;
@@ -62,52 +62,52 @@
             height: 33px;
             border-radius: 10px;
             font-size: 14px;
-            &:disabled{
-              background-color: rgba(0, 149, 246, .6);
+            &:disabled {
+              background-color: rgba(0, 149, 246, 0.6);
               cursor: default;
               transition: .2s;
-              &:hover{
-                background-color: rgba(0, 149, 246, .6);
+              &:hover {
+                background-color: rgba(0, 149, 246, 0.6);
               }
             }
-            &:hover{
+            &:hover {
               background-color: rgb(24, 119, 242);
             }
           }
         }
       }
-      .or{
+      .or {
         display: flex;
         align-items: center;
         gap: 10px;
         margin-top: 1rem;
-        .hr{
+        .hr {
           width: 100px;
           height: 1px;
           background-color: rgb(219, 219, 219);
         }
-        span{
+        span {
           color: rgb(142, 142, 142);
           font-size: 13px;
         }
       }
-      .facebook{
+      .facebook {
         margin-top: 1.5rem;
-        span{
+        span {
           display: flex;
           align-items: center;
           gap: 10px;
           cursor: pointer;
-          svg{
+          svg {
             font-size: 20px;
           }
           color: #385185;
           font-size: 15px;
         }
       }
-      .forgot_pass{
+      .forgot_pass {
         margin-top: 1rem;
-        span{
+        span {
           cursor: pointer;
           font-size: 12px;
           color: rgb(0, 55, 107);
@@ -115,7 +115,7 @@
         }
       }
     }
-    .block{
+    .block {
       border: 2px solid rgb(219, 219, 219);
       padding: 5% 2%;
       border-radius: 1px;
@@ -128,31 +128,31 @@
         margin-top: -1rem;
         margin-bottom: -1rem;
       }
-      h3{
+      h3 {
         font-size: 15px;
         color: rgb(38, 38, 38);
         text-align: center;
         font-weight: 400;
-        span{
-          color: #0095F6;
+        span {
+          color: #0095f6;
           cursor: pointer;
         }
       }
     }
-    .login_footer{
+    .login_footer {
       display: flex;
       align-items: center;
       flex-direction: column;
-      .getTheApp{
-        span{
+      .getTheApp {
+        span {
           text-align: center;
         }
       }
-      div{
+      div {
         display: flex;
         margin-top: 10px;
         gap: 10px;
-        img{
+        img {
           width: 140px;
           height: 40px;
           cursor: pointer;

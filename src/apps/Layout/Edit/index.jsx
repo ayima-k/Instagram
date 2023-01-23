@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import Footer from '../../../components/Footer'
+import Footer from '../../../components/Footer';
 import { putUser } from '../../../config/api';
-import './Edit.scss'
+import './Edit.scss';
 
 const Edit = () => {
   const {
@@ -14,36 +14,40 @@ const Edit = () => {
     mode: 'onBlur',
   });
 
-  const user = JSON.parse(localStorage.getItem('user'))
-  const accessToken = localStorage.getItem('accessToken')
-  const [passValue, setPassValue] = React.useState('')
-  const [repValue, setRepValue] = React.useState('')
-  const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem('user'));
+  const accessToken = localStorage.getItem('accessToken');
+  const [passValue, setPassValue] = React.useState('');
+  const [repValue, setRepValue] = React.useState('');
+  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    putUser(user.id, data, accessToken)
-    .then(r => {
-      localStorage.setItem('user', JSON.stringify(r.data))
-      navigate('/profile')
-    })
-  }
+    putUser(user.id, data, accessToken).then((r) => {
+      localStorage.setItem('user', JSON.stringify(r.data));
+      navigate('/profile');
+    });
+  };
 
   return (
-    <div className='edit'>
+    <div className="edit">
       <div className="edit_container">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className='form_block'>
+          <div className="form_block">
             <div>
-              <img src={user?.avatarka ? '' : 'https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg'} alt="" />
+              <img
+                src={
+                  user?.avatarka
+                    ? ''
+                    : 'https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg'
+                }
+                alt=""
+              />
             </div>
-            <div className='dFlex'>
+            <div className="dFlex">
               <h2>{user?.username}</h2>
-              <input type='file' placeholder='Change profile photo'/>
+              <input type="file" placeholder="Change profile photo" />
             </div>
           </div>
-          <div className="form_body">
-
-          </div>
+          <div className="form_body"></div>
           <div>
             <input
               type="text"
@@ -121,15 +125,18 @@ const Edit = () => {
             />
           </div>
           <div className="btn">
-            <button disabled={!isValid || passValue !== repValue || passValue.length <= 8} type="submit" className="btn_primary">
+            <button
+              disabled={!isValid || passValue !== repValue || passValue.length <= 8}
+              type="submit"
+              className="btn_primary">
               Sign up
             </button>
           </div>
         </form>
       </div>
-      <Footer/>
+      <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default Edit
+export default Edit;

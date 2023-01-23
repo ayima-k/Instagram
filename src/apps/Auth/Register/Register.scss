@@ -1,13 +1,13 @@
-.register{
+.register {
   background-color: rgb(250, 250, 250);
-  .register_container{
+  .register_container {
     display: flex;
     flex-direction: column;
     align-items: center;
     @media (max-width: 850px) {
       margin-bottom: -3rem;
     }
-    .container{
+    .container {
       border: 2px solid rgb(219, 219, 219);
       padding: 1% 3%;
       margin-top: 1rem;
@@ -23,46 +23,46 @@
         background: none;
         border: 0;
       }
-      .or{
+      .or {
         display: flex;
         align-items: center;
         gap: 10px;
         margin-top: 1rem;
-        .hr{
+        .hr {
           width: 120px;
           height: 1px;
           background-color: rgb(219, 219, 219);
         }
-        span{
+        span {
           color: rgb(142, 142, 142);
           font-size: 13px;
         }
       }
-      .facebook{
+      .facebook {
         margin-top: 1.5rem;
-        background-color: #0095F6;
+        background-color: #0095f6;
         padding: 8px 40px;
         width: 205px;
         border-radius: 5px;
         cursor: pointer;
-        &:hover{
+        &:hover {
           background-color: rgb(24, 119, 242);
         }
-        span{
+        span {
           display: flex;
           align-items: center;
           gap: 10px;
           cursor: pointer;
-          svg{
+          svg {
             font-size: 20px;
           }
           color: #fff;
           font-size: 15px;
         }
       }
-      .aboutReg{
-        p{
-          color: #8E8E8E;
+      .aboutReg {
+        p {
+          color: #8e8e8e;
           font-size: 17px;
           font-weight: 500;
           text-align: center;
@@ -70,43 +70,44 @@
           margin: 0;
         }
       }
-      .logo{
-        img{
+      .logo {
+        img {
           width: 200px;
           height: 80px;
         }
       }
-      form{
+      form {
         display: flex;
         flex-direction: column;
         gap: 10px;
         margin-top: 30px;
-        input{
+        input {
           background: rgb(250, 250, 250);
           outline: 0;
           border: 1px solid rgb(219, 219, 219);
           padding: 10px;
           width: 260px;
           border-radius: 1px;
-          &::placeholder{
+          &::placeholder {
             color: rgb(142, 142, 142);
           }
         }
-        .learnMore, .terms{
-          p{
+        .learnMore,
+        .terms {
+          p {
             line-height: 16px;
             font-weight: 400;
             color: rgb(142, 142, 142);
             font-size: 13px;
             text-align: center;
-            span{
-              color: #00376B;
+            span {
+              color: #00376b;
               cursor: pointer;
             }
           }
         }
-        .btn{
-          button{
+        .btn {
+          button {
             background-color: rgb(0, 149, 246);
             color: #fff;
             outline: 0;
@@ -117,22 +118,22 @@
             border-radius: 10px;
             font-size: 14px;
             margin-bottom: 1rem;
-            &:disabled{
-              background-color: rgba(0, 149, 246, .6);
+            &:disabled {
+              background-color: rgba(0, 149, 246, 0.6);
               cursor: default;
               transition: .2s;
-              &:hover{
-                background-color: rgba(0, 149, 246, .6);
+              &:hover {
+                background-color: rgba(0, 149, 246, 0.6);
               }
             }
-            &:hover{
+            &:hover {
               background-color: rgb(24, 119, 242);
             }
           }
         }
       }
     }
-    .block{
+    .block {
       border: 2px solid rgb(219, 219, 219);
       padding: 10px 2%;
       border-radius: 1px;
@@ -145,32 +146,32 @@
         margin-top: -1rem;
         margin-bottom: -1rem;
       }
-      h3{
+      h3 {
         font-size: 15px;
         color: rgb(38, 38, 38);
         text-align: center;
         font-weight: 400;
-        span{
-          color: #0095F6;
+        span {
+          color: #0095f6;
           cursor: pointer;
         }
       }
     }
-    .login_footer{
+    .login_footer {
       display: flex;
       align-items: center;
       flex-direction: column;
       padding-bottom: 5rem;
-      .getTheApp{
-        span{
+      .getTheApp {
+        span {
           text-align: center;
         }
       }
-      div{
+      div {
         display: flex;
         margin-top: 10px;
         gap: 10px;
-        img{
+        img {
           width: 140px;
           height: 40px;
           cursor: pointer;

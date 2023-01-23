@@ -1,19 +1,22 @@
 import React from 'react';
-import PostsImage from '../../../components/posts/PostsImage';
+import PostsCard from '../PostsCard';
 import { getAllPosts } from '../../../config/api';
-import './Posts.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Posts = () => {
-  const [data, setData] = React.useState(null);
   const accessToken = localStorage.getItem('accessToken');
+  const [data, setData] = React.useState(null);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     getAllPosts(accessToken).then((r) => setData(r.data));
   }, [data]);
 
   return (
-    <div className="posts_container">
-      {data?.length >= 1 && data?.map((obj) => <PostsImage key={obj?.id} params={obj} />)}
+    <div className="posts">
+      {data?.map((item) => (
+        <PostsCard obj={item} key={item.id} />
+      ))}
     </div>
   );
 };

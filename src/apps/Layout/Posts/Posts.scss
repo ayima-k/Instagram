@@ -1,4 +1,4 @@
-.posts_container{
+.posts_container {
   margin-left: 19%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -13,17 +13,41 @@
     margin-left: 0%;
   }
   @media (max-width: 450px) {
-    grid-template-rows: repeat(1, 1ft);
-  }
-  .post_images{
     display: flex;
-    img{
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8%;
+  }
+  @media (max-width: 375px) {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
+  .post_images {
+    display: flex;
+    justify-content: center;
+    width: 300px;
+    cursor: pointer;
+    @media (max-width: 450px) {
+      width: 150px;
+    }
+    @media (max-width: 320px) {
+      width: 270px;
+    }
+    img {
       width: 300px;
       height: 300px;
       object-fit: cover;
       @media (max-width: 768px) {
         width: 200px;
         height: 200px;
+      }
+      @media (max-width: 450px) {
+        width: 150px;
+        height: 150px;
+      }
+      @media (max-width: 320px) {
+        width: 250px;
+        height: 250px;
       }
     }
   }
