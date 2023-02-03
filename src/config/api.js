@@ -17,10 +17,13 @@ export const putUser = (id, data, accessToken) => axios.put(`users/${id}/`, data
 export const getAllStories = (accessToken) => axios.get('stories', headers(accessToken))
 export const getSingleStory = (id, accessToken) => axios.get(`stories/${id}`, accessToken)
 export const createStory = (data, accessToken) => axios.post('stories/', data, headers(accessToken))
+export const deleteStory = (id, accessToken) => axios.delete(`stories/${id}`, headers(accessToken))
 
 export const getAllPosts = (accessToken) => axios.get('posts', headers(accessToken))
 export const getSinglePost = (id, accessToken) => axios.get(`posts/${id}`, headers(accessToken))
 export const createPost = (data, accessToken) => axios.post(`posts/`, data, headers(accessToken))
+export const editPost = (id, data, accessToken) => axios.put(`posts/${id}/`, data, headers(accessToken))
+export const deletePost = (id, accessToken) => axios.delete(`posts/${id}`, headers(accessToken))
 
 export const postLike = (data, accessToken) => axios.post('likes/', data, headers(accessToken))
 export const deleteLike = (id, accessToken) => axios.delete(`likes/${id}`, headers(accessToken))
@@ -28,7 +31,7 @@ export const deleteLike = (id, accessToken) => axios.delete(`likes/${id}`, heade
 export const getFollowers = (id) => axios.get(`users/${id}/subscribers`)
 export const getFollowings = (id) => axios.get(`users/${id}/subscriptions`)
 export const getStories = (id) => axios.get(`users/${id}/stories`)
-export const getSaves = (id) => axios.get(`users/${id}/saves`)
+export const getSaves = (id, accessToken) => axios.get(`users/${id}/saves`, headers(accessToken))
 export const getArchives = (id) => axios.get(`users/${id}/archives`)
 export const getPostsOfUser = (id) => axios.get(`users/${id}/posts`)
 
@@ -42,3 +45,10 @@ export const getComments = (id, accessToken) => axios.get(`posts/${id}/comments`
 export const postComments = (data, accessToken) => axios.post('comments/', data, headers(accessToken))
 
 export const getLiked = (id, accessToken) => axios.get(`users/${id}/likes/`, headers(accessToken))
+
+export const savePost = (data, accessToken) => axios.post('saves/', data, headers(accessToken))
+export const deleteSave = (id, accessToken) => axios.delete(`saves/${id}`, headers(accessToken))
+
+export const getFollowRequests = (accessToken) => axios.get(`follow/requests/`, headers(accessToken))
+export const confirmRequest = (id, accessToken) => axios.put(`follow/${id}/`, headers(accessToken))
+export const deleteRequest = (id, accessToken) => axios.delete(`follow/${id}`, headers(accessToken))

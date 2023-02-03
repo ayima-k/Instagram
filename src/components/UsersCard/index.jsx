@@ -18,7 +18,7 @@ const UsersCard = () => {
   const [posts, setPosts] = React.useState(null);
   const [follow, setFollow] = React.useState(false);
   const accessToken = localStorage.getItem('accessToken');
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const navigate = useNavigate();
 
@@ -41,7 +41,6 @@ const UsersCard = () => {
     ).then((r) => {
       if (r) {
         setFollow(true);
-        localStorage.setItem('user', {...user, subscribers: user.subscribers+1})
       }
     });
   };
@@ -77,7 +76,7 @@ const UsersCard = () => {
             )}
             <BsThreeDots />
           </div>
-          {isMobile && id !== data && data?.id &&(
+          {isMobile && id !== data && data?.id && (
             <button
               className={!follow ? 'follow' : 'follow ed'}
               onClick={() => (!follow ? handleFollow() : handleDelete())}>
@@ -90,11 +89,16 @@ const UsersCard = () => {
                 <span>
                   <p>{posts?.length}</p> posts
                 </span>
-                <span onClick={() => data?.subscribers !== 0 && navigate(`/users/${data.id}/subscribers`)}>
+                <span
+                  onClick={() =>
+                    data?.subscribers !== 0 && navigate(`/users/${data.id}/subscribers`)
+                  }>
                   <p>{data?.subscribers}</p> followers
                 </span>
                 <span
-                  onClick={() => data?.subscriptions !== 0 && navigate(`/users/${data.id}/subscriptions`)}>
+                  onClick={() =>
+                    data?.subscriptions !== 0 && navigate(`/users/${data.id}/subscriptions`)
+                  }>
                   <p>{data?.subscriptions}</p> following
                 </span>
               </div>

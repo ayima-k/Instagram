@@ -8,6 +8,7 @@ const Search = () => {
   const [value, setValue] = React.useState('');
   const [data, setData] = React.useState(null);
   const inputRef = React.useRef(null);
+  const user = JSON.parse(localStorage.getItem('user'));
   const navigate = useNavigate();
   const [toggle, setToggle] = React.useState(true);
 
@@ -64,7 +65,7 @@ const Search = () => {
                 key={item.id}
                 className="searched_block"
                 onClick={() => {
-                  navigate(`users/${item.id}`);
+                  navigate(user?.id == item.id ? '/profile' : `users/${item.id}`);
                   setToggle(false);
                 }}>
                 <img

@@ -6,16 +6,18 @@ import { MdOutlineAddAPhoto } from 'react-icons/md';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../../../components/Footer';
-import { getLiked, getPostsOfUser } from '../../../config/api';
+import { getLiked, getPostsOfUser, getSaves, getSinglePost } from '../../../config/api';
 import PostsImage from '../../../components/posts/PostsImage';
 import './Profile.scss';
 
 const Profile = () => {
   const data = JSON.parse(localStorage.getItem('user'));
   const [posts, setPosts] = React.useState(null);
-  const [liked, setLiked] = React.useState(null)
+  const [saved, setSaved] = React.useState(null);
   const [active, setActive] = React.useState('posts');
   const accessToken = localStorage.getItem('accessToken');
+  // const [liked, setLiked] = React.useState(null)
+  // const likes = []
 
   const navigate = useNavigate();
 
@@ -25,10 +27,17 @@ const Profile = () => {
 
   React.useEffect(() => {
     getPostsOfUser(data.id).then((r) => setPosts(r.data));
-    getLiked(data.id, accessToken).then(r => setLiked(r.data))
-  }, [posts, liked]);
 
-  // console.log(liked);
+    getSaves(data.id, accessToken).then((r) => setSaved(r.data));
+
+    // getLiked(data.id, accessToken).then(r => {
+
+    //   setLiked(r.data?.map(obj => getSinglePost(obj?.post, accessToken)
+    //   .then(r => likes.push(r.data))))
+    // })
+  }, [posts, saved]);
+
+  // console.log(saved);
 
   return (
     <div className="profile">
@@ -37,7 +46,7 @@ const Profile = () => {
           <img
             src={
               data.avatarka
-                ? ''
+                ? URL.createObjectURL(data.avatarka)
                 : 'https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg'
             }
             alt=""
@@ -80,11 +89,16 @@ const Profile = () => {
                 <span>
                   <p>{posts?.length}</p> posts
                 </span>
-                <span onClick={() => data.subscribers !== 0 && navigate(`/users/${data.id}/subscribers`)}>
+                <span
+                  onClick={() =>
+                    data.subscribers !== 0 && navigate(`/users/${data.id}/subscribers`)
+                  }>
                   <p>{data.subscribers}</p> followers
                 </span>
                 <span
-                  onClick={() => data.subscriptions !== 0 && navigate(`/users/${data.id}/subscriptions`)}>
+                  onClick={() =>
+                    data.subscriptions !== 0 && navigate(`/users/${data.id}/subscriptions`)
+                  }>
                   <p>{data.subscriptions}</p> following
                 </span>
               </div>
@@ -136,13 +150,13 @@ const Profile = () => {
             onClick={() => setActive('archives')}>
             <CgProfile /> ARCHIVES
           </span>
-          <span
+          {/* <span
             className={active === 'liked' ? 'span active' : 'span'}
             onClick={() => setActive('liked')}>
             <AiFillHeart /> LIKED
-          </span>
+          </span> */}
         </div>
-        {posts?.length == 0 ? (
+        {posts?.length == 0 && active === 'posts' ? (
           <div className="profile_body_body">
             <MdOutlineAddAPhoto />
             <h1>Share Photos</h1>
@@ -150,11 +164,13 @@ const Profile = () => {
             <button>Share your first photo</button>
           </div>
         ) : (
-          <div className="profile_body_posts">
-            {posts?.map((item) => (
-              <PostsImage key={item.id} params={item} />
-            ))}
-          </div>
+          active === 'posts' && (
+            <div className="profile_body_posts">
+              {posts?.map((item) => (
+                <PostsImage key={item.id} params={item} />
+              ))}
+            </div>
+          )
         )}
       </div>
       <Footer />

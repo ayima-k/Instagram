@@ -4,10 +4,12 @@ import { FiMessageCircle, FiSend } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import {
   deleteLike,
+  deleteSave,
   getComments,
   getSinglePost,
   postComments,
   postLike,
+  savePost,
 } from '../../../config/api';
 import './PostsCard.scss';
 
@@ -19,28 +21,38 @@ const PostsCard = ({ obj }) => {
   const [isLiked, setIsLiked] = React.useState(false);
   const [comments, setComments] = React.useState(false);
   const [comValue, setComValue] = React.useState('');
+  const [isSaved, setIsSaved] = React.useState(false);
+  const [update, setUpdate] = React.useState('');
 
   React.useEffect(() => {
-    getSinglePost(obj?.id, accessToken).then((r) => setData(r.data));
-  }, [data]);
+    getSinglePost(obj?.id, accessToken).then((r) => {
+      setData(r.data);
+      setUpdate('Got!');
+    });
+  }, [data, update]);
 
   const handleLike = (id) => {
-    postLike({ post: id }, accessToken);
+    postLike({ post: id }, accessToken).then(() => setUpdate('Liked!'));
   };
 
   const handleDeleteLike = (id) => {
-    deleteLike(id, accessToken);
+    deleteLike(id, accessToken).then(() => setUpdate('Unliked!'));
   };
 
   const getComment = (id) => {
-    console.log(id);
     getComments(id, accessToken).then((r) => setCommentsData(r.data));
   };
 
   const postComment = (id) => {
-    console.log(id);
-    postComments({body: comValue, post: id}, accessToken)
-    .then(r => console.log(r.data))
+    postComments({ body: comValue, post: id }, accessToken);
+  };
+
+  const handleSave = (id) => {
+    savePost({ post: id }, accessToken).then((r) => console.log(r.data));
+  };
+
+  const handleDeleteSave = (id) => {
+    deleteSave(id, accessToken).then((r) => console.log(r.data));
   };
 
   return (
@@ -89,25 +101,51 @@ const PostsCard = ({ obj }) => {
             />
             <FiSend />
           </div>
-          <div>
-            <svg
-              aria-label="Save"
-              className="_ab6-"
-              color="#262626"
-              fill="#262626"
-              height="24"
-              role="img"
-              viewBox="0 0 24 24"
-              width="24">
-              <polygon
-                fill="none"
-                points="20 21 12 13.44 4 21 4 3 20 3 20 21"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"></polygon>
-            </svg>
-          </div>
+          {isSaved ? (
+            <div>
+              <svg
+                aria-label="Save"
+                className="_ab6-"
+                color="#262626"
+                fill="black"
+                height="24"
+                role="img"
+                viewBox="0 0 24 24"
+                width="24">
+                <polygon
+                  fill="none"
+                  points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"></polygon>
+              </svg>
+            </div>
+          ) : (
+            <div
+              onClick={() => {
+                handleSave(data?.id);
+                setIsSaved(!isSaved);
+              }}>
+              <svg
+                aria-label="Save"
+                className="_ab6-"
+                color="#262626"
+                fill="#262626"
+                height="24"
+                role="img"
+                viewBox="0 0 24 24"
+                width="24">
+                <polygon
+                  fill="none"
+                  points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"></polygon>
+              </svg>
+            </div>
+          )}
         </div>
         {comments && commentsData?.length >= 1 && <div className="comments_drop">comments</div>}
         <div className="about_block">
@@ -128,7 +166,9 @@ const PostsCard = ({ obj }) => {
             type="text"
             placeholder="Add a comment..."
           />
-          <button disabled={comValue.length === 0} onClick={() => postComment(data?.id )}>Post</button>
+          <button disabled={comValue.length === 0} onClick={() => postComment(data?.id)}>
+            Post
+          </button>
         </div>
       </div>
     </div>

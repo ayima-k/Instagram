@@ -18,10 +18,15 @@ const Edit = () => {
   const accessToken = localStorage.getItem('accessToken');
   const [passValue, setPassValue] = React.useState('');
   const [repValue, setRepValue] = React.useState('');
+  const [ava, setAva] = React.useState(null);
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    putUser(user.id, data, accessToken).then((r) => {
+    const formData = new FormData();
+    formData.append('avatar', ava);
+    console.log(ava);
+    putUser(user.id, { ...data, formData }, accessToken).then((r) => {
+      console.log(r.data);
       localStorage.setItem('user', JSON.stringify(r.data));
       navigate('/profile');
     });
@@ -44,7 +49,13 @@ const Edit = () => {
             </div>
             <div className="dFlex">
               <h2>{user?.username}</h2>
-              <input type="file" placeholder="Change profile photo" />
+              <input
+                type="file"
+                placeholder="Change profile photo"
+                onInput={(e) => {
+                  setAva(e.target.files[0]);
+                }}
+              />
             </div>
           </div>
           <div className="form_body"></div>
@@ -129,7 +140,7 @@ const Edit = () => {
               disabled={!isValid || passValue !== repValue || passValue.length <= 8}
               type="submit"
               className="btn_primary">
-              Sign up
+              Submit
             </button>
           </div>
         </form>

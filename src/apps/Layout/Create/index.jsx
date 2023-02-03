@@ -9,10 +9,9 @@ const Create = () => {
   const [value, setValue] = React.useState('');
 
   const handleCreatePost = () => {
-    createPost({ title: value, post_images: [URL.createObjectURL(filePost)] }, accessToken)
-    .then(
-      (r) => console.log(r.data),
-    );
+    const formData = new FormData();
+    formData.append('file', filePost);
+    createPost({ title: value, formData }, accessToken).then((r) => console.log(r.data));
   };
 
   const handleCreateStory = () => {

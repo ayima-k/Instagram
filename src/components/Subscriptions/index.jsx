@@ -1,12 +1,11 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getFollowings, getUserById } from '../../config/api';
-import GetUserById from '../getUserById';
 import './Subscciptions.scss';
 
 const Subscriptions = () => {
   const [data, setData] = React.useState(null);
-  const { id } = useParams()
+  const { id } = useParams();
   const navigate = useNavigate();
 
   React.useEffect(() => {
@@ -27,7 +26,7 @@ const Subscriptions = () => {
             />
             <span>user</span>
           </div>
-      ))}
+        ))}
     </div>
   );
 };
