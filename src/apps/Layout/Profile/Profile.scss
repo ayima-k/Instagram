@@ -172,8 +172,20 @@
       flex-wrap: wrap;
       gap: 20px;
       margin-bottom: 2rem;
+      @media (max-width: 450px) {
+        justify-content: center;
+      }
       img {
         cursor: pointer;
+        @media (max-width: 450px) {
+          width: 150px;
+        }
+        @media (max-width: 390px) {
+          width: 200px;
+        }
+        @media (max-width: 350px) {
+          width: 250px;
+        }
       }
     }
   }

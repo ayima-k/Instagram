@@ -1,21 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAllStories, getUserById } from '../../config/api';
+import { getAllStories, getUsers } from '../../config/api';
 
 const Stories = () => {
   const [data, setData] = React.useState(null);
-  // const [user, setUser] = React.useState(null);
   const accessToken = localStorage.getItem('accessToken');
   const navigate = useNavigate();
-
+  
   React.useEffect(() => {
-    getAllStories(accessToken).then((r) => {
-      setData(r.data);
-    });
-    // data?.map((obj) => getUserById(obj?.user).then((r) => setUser({ ...r.data })));
+    getAllStories(accessToken)
+      .then((r) => {
+        setData(r.data);
+      });
+    
   }, [data]);
-
-  // console.log(data);
 
   return (
     <div className="stories">

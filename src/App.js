@@ -15,6 +15,7 @@ import UsersCard from './components/UsersCard';
 import StoriesCard from './components/StoriesMore';
 import PostCardsForExplore from './components/posts/PostsCardForExplore';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
+import NotifPage from './components/NotifPage';
 
 axios.defaults.baseURL = 'https://cryxxxen.pythonanywhere.com/';
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/create" element={<Create />} />
         <Route path="/search" element={<Search />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path='/notifications' element={<NotifPage/>} />
         <Route path="/profile/edit" element={<Edit />} />
         <Route path="/users/:id" element={<UsersCard />} />
         <Route path="/stories/:id" element={<StoriesCard />} />

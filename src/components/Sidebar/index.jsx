@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import Search from '../Search';
 import Notif from '../../apps/Layout/Notifications';
 import './Sidebar.scss';
+import { getSearch } from '../../config/api';
 
 const Sidebar = () => {
   const [active, setActive] = React.useState('home');
@@ -22,7 +23,10 @@ const Sidebar = () => {
   const [notif, setNotif] = React.useState(false);
   const [value, setValue] = React.useState('');
   const inputRef = React.useRef(null);
+  const user = JSON.parse(localStorage.getItem('user'));
+  
   const navigate = useNavigate();
+  const [dataSearch, setDataSearch] = React.useState(null);
 
   const onClickClear = () => {
     setValue('');
@@ -40,6 +44,13 @@ const Sidebar = () => {
   const logOut = () => {
     localStorage.clear();
     window.location.reload();
+  };
+
+  const handleSearchMobile = (value) => {
+    getSearch(value)
+      .then((r) => {
+        setDataSearch(r.data);
+      })
   };
 
   return (
@@ -64,7 +75,10 @@ const Sidebar = () => {
                 <input
                   type="text"
                   placeholder="Search"
-                  onChange={(e) => setValue(e.target.value)}
+                  onChange={(e) => {
+                    setValue(e.target.value)
+                    handleSearchMobile(value)
+                  }}
                   ref={inputRef}
                   value={value}
                 />
@@ -81,11 +95,36 @@ const Sidebar = () => {
               <div
                 onClick={() => setActive('notif')}
                 className={active === 'notif' ? 'div active' : 'div'}>
-                {active === 'notif' ? <AiFillHeart /> : <AiOutlineHeart />}
+                {active === 'notif' ? <AiFillHeart onClick={() => navigate('/notifications')} /> : <AiOutlineHeart onClick={() => navigate('/notifications')}/>}
               </div>
             </div>
           </div>
         )}
+        {
+          isMobile && value?.length !== 0 && (
+            <div className="searched_mobile">
+              {
+                dataSearch?.map((item) => (
+                  <div
+                    key={item.id}
+                    className="searched_block"
+                    onClick={() => {
+                      navigate(user?.id == item.id ? '/profile' : `users/${item.id}`);
+                    }}>
+                    <img
+                      src={
+                        item.avatarka
+                          ? ''
+                          : 'https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg'
+                      }
+                      alt=""
+                    />
+                    <h2>{item.username}</h2>
+                  </div>
+                ))}
+            </div>
+          )
+        }
         <div className={search || notif ? 'sidebar new' : 'sidebar'}>
           {!isMobile && (
             <div

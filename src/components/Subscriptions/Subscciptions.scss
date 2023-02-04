@@ -3,6 +3,10 @@
   padding: 20px;
   height: 90vh;
   width: 100%;
+  @media (max-width: 760px) {
+    margin-left: 1%;
+    margin-top: 2rem;
+  }
   div{
     cursor: pointer;
     display: flex;

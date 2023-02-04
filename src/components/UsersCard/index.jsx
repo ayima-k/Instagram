@@ -28,7 +28,6 @@ const UsersCard = () => {
 
   React.useEffect(() => {
     getUserById(id).then((r) => setData(r.data));
-
     getPostsOfUser(id).then((r) => setPosts(r.data));
   }, [follow, data]);
 

@@ -37,8 +37,6 @@ const Profile = () => {
     // })
   }, [posts, saved]);
 
-  // console.log(saved);
-
   return (
     <div className="profile">
       <div className="profile_header">
@@ -92,13 +90,15 @@ const Profile = () => {
                 <span
                   onClick={() =>
                     data.subscribers !== 0 && navigate(`/users/${data.id}/subscribers`)
-                  }>
+                  }
+                >
                   <p>{data.subscribers}</p> followers
                 </span>
                 <span
                   onClick={() =>
                     data.subscriptions !== 0 && navigate(`/users/${data.id}/subscriptions`)
-                  }>
+                  }
+                >
                   <p>{data.subscriptions}</p> following
                 </span>
               </div>
@@ -118,10 +118,18 @@ const Profile = () => {
             <span>
               <p>{posts?.length}</p> posts
             </span>
-            <span onClick={() => navigate('/profile/subscribers')}>
+            <span 
+              onClick={() =>
+                data.subscribers !== 0 && navigate(`/users/${data.id}/subscribers`)
+              }
+            >
               <p>{data.subscribers}</p> followers
             </span>
-            <span onClick={() => navigate('/profile/subscriptions')}>
+            <span
+              onClick={() =>
+                data.subscriptions !== 0 && navigate(`/users/${data.id}/subscriptions`)
+              }
+            >
               <p>{data.subscriptions}</p> following
             </span>
           </div>

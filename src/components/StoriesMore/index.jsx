@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { deleteStory, getAllStories } from '../../config/api';
+import { deleteStory, getAllStories, getUsers } from '../../config/api';
 import { VscChromeClose } from 'react-icons/vsc';
 import { BiArchiveOut } from 'react-icons/bi';
 import { RiDeleteBin5Fill } from 'react-icons/ri';
@@ -12,12 +12,21 @@ const StoriesCard = () => {
   const navigate = useNavigate();
   const current_user = JSON.parse(localStorage.getItem('user'));
   const { id } = useParams();
+  const [users, setUsers] = React.useState(null);
+  const user_info = []
 
   React.useEffect(() => {
     getAllStories(accessToken).then((r) => {
       setData(r.data?.filter((item) => item?.id == Number(id))[0]);
     });
-  }, [data]);
+    getUsers()
+      .then(r => setUsers(r.data));
+    users?.filter(val => {
+      return val.id === data?.user ? user_info.push(val) : null
+    })
+  }, [data, users]);
+
+  console.log(user_info);
 
   const handleArchive = () => {};
 

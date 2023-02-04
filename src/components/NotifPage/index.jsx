@@ -1,8 +1,8 @@
-import React from 'react';
-import { confirmRequest, deleteRequest, getFollowRequests } from '../../../config/api';
-import './Notifications.scss';
+import React from 'react'
+import { confirmRequest, deleteRequest, getFollowRequests } from '../../config/api'
+import '../../apps/Layout/Notifications/Notifications.scss'
 
-const Notif = () => {
+const NotifPage = () => {
   const accessToken = localStorage.getItem('accessToken')
   const [data, setData] = React.useState(null)
 
@@ -10,6 +10,7 @@ const Notif = () => {
     getFollowRequests(accessToken)
     .then(r => {
       setData(r.data)
+      console.log(r.data);
     })
   }, [data])
 
@@ -22,7 +23,7 @@ const Notif = () => {
   }
 
   return (
-    <div className="notif_container">
+    <div className="notif_container mobile">
       <h2>Follow Requests</h2>
       <div className='notif_block'>
         {
@@ -36,13 +37,13 @@ const Notif = () => {
               <button className='delete' onClick={() => handleDeleted(obj?.id)}>Delete</button>
             </div>
           </div>)
-        }
+        } 
         {
           !data || data?.length == 0 && <span>No Requests Yet</span>
         }
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Notif
+export default NotifPage

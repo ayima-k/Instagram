@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { AiFillFacebook } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import { getToken, getUser } from '../../../config/api';
+import { getToken, getUsers } from '../../../config/api';
 import Footer from '../../../components/Footer';
 import './Login.scss';
 
@@ -24,7 +24,7 @@ const Login = () => {
   const [passValue, setPassValue] = React.useState('');
 
   const onSubmit = (data) => {
-    getUser()
+    getUsers()
       .then((r) => {
         localStorage.setItem(
           'user',

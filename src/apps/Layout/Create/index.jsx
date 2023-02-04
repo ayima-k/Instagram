@@ -1,5 +1,6 @@
 import React from 'react';
-import { createPost, createStory } from '../../../config/api';
+import { useNavigate } from 'react-router-dom';
+import { createPost, createPostImages, createStory } from '../../../config/api';
 import './Create.scss';
 
 const Create = () => {
@@ -7,17 +8,26 @@ const Create = () => {
   const [filePost, setFilePost] = React.useState(null);
   const [fileStory, setFileStory] = React.useState(null);
   const [value, setValue] = React.useState('');
+  const navigate = useNavigate()
 
   const handleCreatePost = () => {
-    const formData = new FormData();
-    formData.append('file', filePost);
-    createPost({ title: value, formData }, accessToken).then((r) => console.log(r.data));
+    createPost({ title: value }, accessToken)
+    .then((r) => {
+      const formData = new FormData()
+      formData.append('post', r.data.id)
+      formData.append('image', filePost)
+      setTimeout(() => {
+        createPostImages(formData, accessToken)
+      }, 1000)
+    })
+    .finally(() => navigate('/'));
   };
 
   const handleCreateStory = () => {
     const formData = new FormData();
     formData.append('file', fileStory);
-    createStory(formData, accessToken);
+    createStory(formData, accessToken)
+    .finally(() => navigate('/'));
   };
 
   return (
