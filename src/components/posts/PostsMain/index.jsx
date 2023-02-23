@@ -31,7 +31,7 @@ const Posts = () => {
   return (
     <div className="posts">
       {data?.map((item) => (
-        <PostsCard obj={item} key={item.id} />
+        <PostsCard userId={item.user} obj={item} key={item.id} />
       ))}
     </div>
   );

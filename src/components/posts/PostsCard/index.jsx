@@ -7,13 +7,14 @@ import {
   deleteSave,
   getComments,
   getSinglePost,
+  getUsers,
   postComments,
   postLike,
   savePost,
 } from '../../../config/api';
 import './PostsCard.scss';
 
-const PostsCard = ({ obj }) => {
+const PostsCard = ({ obj, userId }) => {
   const navigate = useNavigate();
   const accessToken = localStorage.getItem('accessToken');
   const [data, setData] = React.useState(null);
@@ -23,13 +24,21 @@ const PostsCard = ({ obj }) => {
   const [comValue, setComValue] = React.useState('');
   const [isSaved, setIsSaved] = React.useState(false);
   const [update, setUpdate] = React.useState('');
+  const [user, setUser] = React.useState(null)
+  const [users, setUsers] = React.useState(null)
 
   React.useEffect(() => {
     getSinglePost(obj?.id, accessToken).then((r) => {
       setData(r.data);
       setUpdate('Got!');
     });
-  }, [data, update]);
+
+    getUsers()
+    .then(r => setUsers(r.data))
+    const newUser = users?.find(item => item?.id === userId)
+    setUser(newUser)
+
+  }, [data, update, users]);
 
   const handleLike = (id) => {
     postLike({ post: id }, accessToken).then(() => setUpdate('Liked!'));
@@ -60,10 +69,10 @@ const PostsCard = ({ obj }) => {
       <div className="post_card-header">
         <img
           onClick={() => navigate(`/users/${data?.user}`)}
-          src="https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"
+          src={user?.avatar ? user.avatar : "https://i.pinimg.com/280x280_RS/2e/45/66/2e4566fd829bcf9eb11ccdb5f252b02f.jpg"}
           alt=""
         />
-        <h3 onClick={() => navigate(`/users/${data?.user}`)}>user</h3>
+        <h3 onClick={() => navigate(`/users/${data?.user}`)}>{user?.username}</h3>
       </div>
       <div className="post_card-body">
         <img

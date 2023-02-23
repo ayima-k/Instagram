@@ -189,7 +189,7 @@ const Register = () => {
         </div>
         <div className="block">
           <h3>
-            Have an account? <span onClick={() => navigate('/auth/login')}>Sign up</span>
+            Have an account? <span onClick={() => navigate('/auth/login')}>Sign in</span>
           </h3>
         </div>
         <div className="login_footer">
